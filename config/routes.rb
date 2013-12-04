@@ -1,4 +1,7 @@
 Pyrite::Application.routes.draw do
+
+  get 'projects/left' => "projects#left"
+  
   resources :papers
 
   resources :projects
@@ -12,6 +15,7 @@ Pyrite::Application.routes.draw do
   root :to => "home#index"
 
   post 'projects/bibliography' => "projects#toBib"
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -67,6 +67,10 @@ class ProjectsController < ApplicationController
     render 'projects/bibliography_format', layout: false
   end
 
+  def left
+    render 'layouts/left_navbar', layout: false
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project
