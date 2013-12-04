@@ -7,4 +7,12 @@
     = csrf_meta_tags
   %body
     .container
-      = yield
+      = render 'layouts/top_navbar'
+      .row
+        .col-lg-2
+          = render 'layouts/left_navbar'
+        .col-lg-8
+          #main
+            = yield
+        .col-lg-2
+          / = render :nothing => true

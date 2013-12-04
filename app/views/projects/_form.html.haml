@@ -1,0 +1,10 @@
+= form_for @project, html: {id: "newproject"} do |f|
+  - if @project.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@project.errors.count, "error")} prohibited this project from being saved:"
+      %ul
+        - @project.errors.full_messages.each do |msg|
+          %li= msg
+  .input-group
+    = f.text_field :name, :class => "form-control", :placeholder => "Name"
+    %span.input-group-addon= link_to '+', "#", :onclick => "$('#newproject').submit()"
