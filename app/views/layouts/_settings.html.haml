@@ -1,5 +1,6 @@
+%h1 Settings
 %h3 Rename Project
-= form_for @project, remote: true, html: {id: "edit_project"} do |f|
+= form_for Project.new, remote: true, html: {id: "edit_project"} do |f|
   .input-group
     = f.text_field :name, :class => "form-control", :placeholder => "Name"
     %span.input-group-addon{style: "max-width: 60px;"}= link_to 'Save', "#", :onclick => "$('#edit_project').submit()"
@@ -10,13 +11,13 @@
     .input-group
       = text_field_tag :user_login, user.login, :readonly => true, class: "form-control"
       = hidden_field_tag :project_id, @project.id
-      .input-group-addon= link_to '-', '#', :onclick => "$('#remove_user#{user.id}').submit();"
+      .input-group-addon= link_to '-', '', :onclick => "$('#remove_user#{user.id}').submit();"
 
 = form_tag "/project/addUser", remote: true, id: "add_user", data: {remove_user: true} do
   .input-group
     = hidden_field_tag :project_id, @project.id
     = text_field_tag :user_login, "", placeholder: "abc1234", class: "form-control"
-    .input-group-addon= link_to '+', '#', :onclick => "$('#add_user').submit();"
+    .input-group-addon{:onclick => "$('#add_user').submit();"} +
 
 = form_tag '/projects/settings', remote: true, id: "project_settings" do
   = hidden_field_tag :project_id, @project.id
@@ -31,5 +32,5 @@
 :javascript
   $("*[data-add-user],*[data-remove-user]")
     .on("ajax:success", function(event, data, status, response) {
-      $( "#settings" ).html( response.responseBody );
+      $( "#settings" ).html( response.responseText );
   });

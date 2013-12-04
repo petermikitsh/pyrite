@@ -16,5 +16,11 @@
 @import 'twitter/bootstrap';
 
 .input-group-addon {
+  min-width: 33px;
   max-width: 33px;
+}
+
+.btn-fixed {
+    min-width: 40px;
+    max-width: 40px;
 }

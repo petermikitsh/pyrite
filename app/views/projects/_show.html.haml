@@ -14,20 +14,19 @@
           %th Title
           %th Author
           %th Journal
-          %th Action
+          %th 
       %tbody
         - @project.papers.each_with_index do |paper, i|
-          %tr
+          %tr{data: {paper_id: paper.id}}
             %td= i+1
-            %td{data: {paper_id: paper.id}}= paper.title
+            %td= paper.title
             %td= paper.authors
             %td= paper.journal
-            %td= button_to '-', paper, method: :delete, :remote => true, data:{confirm: 'Are you sure?', paperdelete: true }, class: "btn btn-danger", :form_class => "paper_delete"
+            %td= button_to '-', paper, method: :delete, :remote => true, data:{confirm: 'Are you sure?', paperdelete: true }, class: "btn btn-danger btn-fixed", :form_class => "paper_delete"
         = render 'papers/form_light', :@paper => Paper.new, :project => @project
   #bibliography.tab-pane
     = render 'layouts/bibliography', :project => @project
   #settings.tab-pane
-    %h1 Settings
     = render 'layouts/settings', :project => @project
 
 :javascript

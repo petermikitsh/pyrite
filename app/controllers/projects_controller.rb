@@ -64,16 +64,18 @@ class ProjectsController < ApplicationController
   end
 
   def addUser
-    user = User.where(:login => params[:user_login])
-    Project.find(params[:project_id]).users.push(User.where(:login => params[:user_login])) unless user.nil?
-    render :partial => 'layouts/settings', :@project => Project.find(params[:project_id])
+    @user = User.where(:login => params[:user_login])
+    @project = Project.find(params[:project_id])
+    @project.users.push(@user) unless @user.nil?
+    render :partial => 'layouts/settings', :@project => @project
 
   end
 
   def removeUser
-    user = User.where(:login => params[:user_login])
-    Project.find(params[:project_id]).users.delete(User.where(:login => params[:user_login])) unless user.nil?
-    render :partial => 'layouts/settings', :@project => Project.find(params[:project_id])
+    @user = User.where(:login => params[:user_login])
+    @project = Project.find(params[:project_id])
+    @project.users.delete(@user) unless @user.nil?
+    render :partial => 'layouts/settings', :project => @project
   end
 
   def toBib

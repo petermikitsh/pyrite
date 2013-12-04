@@ -1,10 +1,10 @@
 = form_for @paper, remote: true, html: {id: 'new_paper_light'} do |f|
   %tr
     %td= f.hidden_field :project_id, value: project.id
-    %td= f.text_field :title, class: 'form-control'
-    %td= f.text_field :authors, class: 'form-control'
-    %td= f.text_field :journal, class: 'form-control'
-    %td= f.submit '+', :class => "btn btn-primary"
+    %td= f.text_field :title, placeholder: 'Title', class: 'form-control'
+    %td= f.text_field :authors, placeholder: 'Author', class: 'form-control'
+    %td= f.text_field :journal, placeholder: 'Journal', class: 'form-control'
+    %td= f.submit '+', :class => "btn btn-primary btn-fixed"
 
 :javascript
   $("#new_paper_light")
