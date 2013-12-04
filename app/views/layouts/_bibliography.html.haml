@@ -1,7 +1,7 @@
 %h2 Bibliography Generator
 = form_tag "/projects/bibliography", remote: true, id: 'bibliography_format' do
   .form-group
-    = radio_button_tag 'format', 'IEEE'
+    = radio_button_tag 'format', 'IEEE', checked: true
     IEEE
 
   .form-group

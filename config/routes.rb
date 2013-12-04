@@ -1,6 +1,8 @@
 Pyrite::Application.routes.draw do
 
   get 'projects/left' => "projects#left"
+  post 'project/addUser' => "projects#addUser"
+  post 'project/removeUser' => "projects#removeUser"
   
   resources :papers
 

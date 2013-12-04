@@ -1,5 +1,5 @@
 %h2{:style => "margin-top: 0px;"} Projects
-- Project.all.each_with_index do |project, index|
+- current_user.projects.each_with_index do |project, index|
   .input-group
     %span.form-control{class: ('strong' if index == 0), data: {project: project.id}}= project.name
     %span.input-group-addon= link_to 'x', project, method: :delete

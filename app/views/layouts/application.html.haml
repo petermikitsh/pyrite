@@ -7,13 +7,16 @@
     = csrf_meta_tags
   %body
     .container
-      = render 'layouts/top_navbar'
-      .row
-        .col-lg-2
-          #left
-            = render 'layouts/left_navbar'
-        .col-lg-7
-          #main
-            = yield
-        .col-lg-3
-          #right
+      - if user_signed_in?
+        = render 'layouts/top_navbar'
+        .row
+          .col-lg-2
+            #left
+              = render 'layouts/left_navbar'
+          .col-lg-7
+            #main
+              = yield
+          .col-lg-3
+            #right
+      - else
+        = yield

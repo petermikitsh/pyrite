@@ -26,6 +26,7 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @project = Project.new(project_params)
+    @project.users = [current_user]
 
     respond_to do |format|
       if @project.save
@@ -62,6 +63,21 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def addUser
+    user = User.where(:login => params[:user_login])
+    Project.find(params[:project_id]).users.push(User.where(:login => params[:user_login])) unless user.nil?
+    logger.debug "STUFFFFFF_THIS #{params[:project_id]}"
+    render :partial => 'layouts/settings', :@project => Project.find(params[:project_id])
+
+  end
+
+  def removeUser
+    logger.debug "STUFFFFFF2 PROJ:#{params[:project_id]} USER:#{params[:user_login]}"
+    user = User.where(:login => params[:user_login])
+    Project.find(params[:project_id]).users.delete(User.where(:login => params[:user_login])) unless user.nil?
+    render :partial => 'layouts/settings', :@project => Project.find(params[:project_id])
+  end
+
   def toBib
     # render :text => format.html_content
     render 'projects/bibliography_format', layout: false
@@ -69,6 +85,10 @@ class ProjectsController < ApplicationController
 
   def left
     render 'layouts/left_navbar', layout: false
+  end
+
+  def settings
+    render 'projects/settings', layout: false
   end
 
   private
@@ -79,6 +99,6 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:name, :owner_id)
+      # params.require(:project).permit(:name, :owner_id, :user_login)
     end
 end
