@@ -1,0 +1,31 @@
+%h2 Bibliography Generator
+= form_tag "/projects/bibliography", remote: true, id: 'bibliography_format' do
+  .form-group
+    = radio_button_tag 'format', 'IEEE'
+    IEEE
+
+  .form-group
+    = radio_button_tag 'format', 'APA'
+    APA
+    
+  .form-group
+    = radio_button_tag 'format', 'CHICAGO'
+    Chicago
+
+  .form-group
+    = radio_button_tag 'format', 'MLA'
+    MLA
+
+  = hidden_field_tag :project, @project.id
+    
+  = submit_tag 'Generate Bibliography', class: 'btn btn-success'
+
+#bibliography_format_response{style: "padding-top: 40px;"}
+
+:javascript
+  $(function() {
+    $("#bibliography_format")
+      .on("ajax:success", function(event, data, status, response) {
+        $( "#bibliography_format_response" ).html( response.responseText );
+    });
+  });

@@ -11,6 +11,8 @@ Pyrite::Application.routes.draw do
   # root 'welcome#index'
   root :to => "home#index"
 
+  post 'projects/bibliography' => "projects#toBib"
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

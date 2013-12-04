@@ -62,6 +62,11 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def toBib
+    # render :text => format.html_content
+    render 'projects/bibliography_format', layout: false
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project
