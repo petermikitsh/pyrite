@@ -27,6 +27,7 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     @project.users = [current_user]
+    @project.owner_id = current_user.id
 
     respond_to do |format|
       if @project.save
@@ -72,9 +73,9 @@ class ProjectsController < ApplicationController
   end
 
   def removeUser
-    @user = User.where(:login => params[:user_login])
+    @user = User.where(:login => params[:user_login]).first
     @project = Project.find(params[:project_id])
-    @project.users.delete(@user) unless @user.nil?
+    @project.users.delete(@user) unless (@user.nil? || @user.id == @project.owner_id)
     render :partial => 'layouts/settings', :project => @project
   end
 
