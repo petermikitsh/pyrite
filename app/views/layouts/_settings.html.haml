@@ -27,18 +27,9 @@
       $( "#left" ).load( "/projects/left" );
   });
 
-/ :javascript
-/   $("*[data-add-user],*[data-remove-user]");
-/     .on("ajax:success", function(event, data, status, response) {
-/       $("#project_settings").submit();
-/         .on("ajax:success", function(event, data, status, response) {
-/           $( "#settings" ).html( response.responseBody );
-/       });
-/   });
 
 :javascript
-  $("*[data-add-user],*[data-remove-user]");
+  $("*[data-add-user],*[data-remove-user]")
     .on("ajax:success", function(event, data, status, response) {
       $( "#settings" ).html( response.responseBody );
-    });
   });

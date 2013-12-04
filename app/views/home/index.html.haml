@@ -3,4 +3,4 @@
     Project information will be shown once a project is created.
     Use the left navbar to create a project.
 - else
-  =  render 'projects/show', :@project => current_user.projects.first
+  =  render 'projects/show', :@project => current_user.projects.order("updated_at DESC").first
