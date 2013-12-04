@@ -66,20 +66,17 @@ class ProjectsController < ApplicationController
   def addUser
     user = User.where(:login => params[:user_login])
     Project.find(params[:project_id]).users.push(User.where(:login => params[:user_login])) unless user.nil?
-    logger.debug "STUFFFFFF_THIS #{params[:project_id]}"
     render :partial => 'layouts/settings', :@project => Project.find(params[:project_id])
 
   end
 
   def removeUser
-    logger.debug "STUFFFFFF2 PROJ:#{params[:project_id]} USER:#{params[:user_login]}"
     user = User.where(:login => params[:user_login])
     Project.find(params[:project_id]).users.delete(User.where(:login => params[:user_login])) unless user.nil?
     render :partial => 'layouts/settings', :@project => Project.find(params[:project_id])
   end
 
   def toBib
-    # render :text => format.html_content
     render 'projects/bibliography_format', layout: false
   end
 
