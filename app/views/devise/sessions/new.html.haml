@@ -1,31 +1,32 @@
-#login.modal
-  .modal-dialog
-    .modal-content
-      = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
-        .moday-header
-          %h2.text-center BetterBib Sign in
-        .modal-body   
-          .row
-            .form-group
-              .col-lg-4.control-label
-                RIT Account
-              .col-lg-8
-                = f.text_field :login, :autofocus => true, :class => "form-control"
-          .row
-            .form-group
-              .col-lg-4.control-label
-                Password
-              .col-lg-8
-                = f.password_field :password, :class => "form-control"
-          / .col-lg-offset-4.col-lg-8
-          /   = f.check_box :remember_me
-          /   = f.label :remember_me
-          = render "devise/shared/links"
-        .modal-footer
-          - if devise_mapping.rememberable?
-            .col-lg-offset-4.col-lg-8
+.container
+  #login.modal
+    .modal-dialog
+      .modal-content
+        = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+          .moday-header
+            %h2.text-center BetterBib Sign in
+          .modal-body   
+            .row
+              .form-group
+                .col-lg-4.control-label
+                  RIT Account
+                .col-lg-8
+                  = f.text_field :login, :autofocus => true, :class => "form-control"
+            .row
+              .form-group
+                .col-lg-4.control-label
+                  Password
+                .col-lg-8
+                  = f.password_field :password, :class => "form-control"
+            / .col-lg-offset-4.col-lg-8
+            /   = f.check_box :remember_me
+            /   = f.label :remember_me
+            = render "devise/shared/links"
+          .modal-footer
+            - if devise_mapping.rememberable?
+              .col-lg-offset-4.col-lg-8
 
-              %div= f.submit "Sign in", :class => "btn btn-primary"
+                %div= f.submit "Sign in", :class => "btn btn-primary"
 
 :javascript
   $('#login').modal()
