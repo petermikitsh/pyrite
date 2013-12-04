@@ -36,6 +36,7 @@ gem 'bootstrap-sass-rails'
 gem 'cancan'
 gem 'devise'
 gem 'devise_ldap_authenticatable'
+gem 'jquery-ui-rails'
 gem 'haml-rails'
 
 group :development do

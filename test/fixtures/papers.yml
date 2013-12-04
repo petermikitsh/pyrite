@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  authors: MyString
+  published_on: 2013-12-03
+  journal: MyString
+  volume: MyString
+  issue: MyString
+  pages: MyString
+  url: MyString
+  project_id: 1
+
+two:
+  title: MyString
+  authors: MyString
+  published_on: 2013-12-03
+  journal: MyString
+  volume: MyString
+  issue: MyString
+  pages: MyString
+  url: MyString
+  project_id: 1

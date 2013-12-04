@@ -1,12 +1,31 @@
-%p#notice= notice
+%ul.nav.nav-tabs
+  %li.active
+    %a{"data-toggle" => "tab", href: "#papers"} Papers
+  %li
+    %a{"data-toggle" => "tab", href: "#settings"} Settings
+.tab-content
+  .tab-pane.active
+    %table.table.table-hover
+      %thead
+        %tr
+          %th #
+          %th Title
+          %th Author
+          %th Journal
+          %th Action
+      %tbody
+        - @project.papers.each_with_index do |paper, i|
+          %tr
+            %td= i+1
+            %td{data: {paper_id: paper.id}}= paper.title
+            %td= paper.authors
+            %td= paper.journal
+            %td= button_to '-', paper, method: :delete, :remote=>true, data:{confirm: 'Are you sure?' }, class: "btn btn-danger"
+        = render 'papers/form_light', :@paper => Paper.new, :project => @project
 
-%p
-  %b Name:
-  = @project.name
-%p
-  %b Owner:
-  = @project.owner_id
-
-= link_to 'Edit', edit_project_path(@project)
-\|
-= link_to 'Back', projects_path
+:javascript
+  $(function() {
+    $('*[data-paper-id]').on('click', function() {
+      $('#right').load('papers/' + $(this).data('paper-id') + '/edit');
+    });
+  });

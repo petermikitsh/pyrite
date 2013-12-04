@@ -1,0 +1,50 @@
+= form_for @paper, remote: true, html: {id: 'edit_paper'} do |f|
+  - if @paper.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@paper.errors.count, "error")} prohibited this paper from being saved:"
+      %ul
+        - @paper.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :title
+    = f.text_field :title, class: 'form-control'
+  .field
+    = f.label :authors
+    = f.text_field :authors, class: 'form-control'
+  .field
+    = f.label :published_on
+    .input-group
+      = f.text_field :published_on, class: 'form-control', readonly: true
+      .input-group-addon
+        %i.glyphicon.glyphicon-calendar
+  .field
+    = f.label :journal
+    = f.text_field :journal, class: 'form-control'
+  .field
+    = f.label :volume
+    = f.text_field :volume, class: 'form-control'
+  .field
+    = f.label :issue
+    = f.text_field :issue, class: 'form-control'
+  .field
+    = f.label :pages
+    = f.text_field :pages, class: 'form-control'
+  .field
+    = f.label :url
+    = f.text_field :url, class: 'form-control'
+    = f.hidden_field :project_id
+  .actions
+    = f.submit 'Save'
+
+- unless @paper.project.nil?
+  :javascript
+    $("#edit_paper")
+      .on("ajax:success", function(event, data, status, response) {
+        $( "#main" ).load( "projects/#{@paper.project.id}" );
+    });
+
+:javascript
+  $(function() {
+    $('#paper_published_on').datepicker({ dateFormat: 'yy-mm-dd' });
+  });

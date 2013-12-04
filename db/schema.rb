@@ -11,7 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131204020534) do
+ActiveRecord::Schema.define(version: 20131204025422) do
+
+  create_table "papers", force: true do |t|
+    t.string   "title"
+    t.string   "authors"
+    t.date     "published_on"
+    t.string   "journal"
+    t.string   "volume"
+    t.string   "issue"
+    t.string   "pages"
+    t.string   "url"
+    t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "projects", force: true do |t|
     t.string   "name"

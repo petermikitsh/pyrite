@@ -1,0 +1,13 @@
+= form_for @paper, remote: true do |f|
+  %tr
+    %td= f.hidden_field :project_id, value: project.id
+    %td= f.text_field :title, class: 'form-control'
+    %td= f.text_field :authors, class: 'form-control'
+    %td= f.text_field :journal, class: 'form-control'
+    %td= f.submit '+', :class => "btn btn-primary"
+
+:javascript
+  $("form")
+    .on("ajax:success", function(event, data, status, response) {
+      $( "#main" ).load( "projects/#{project.id}" );
+  });
